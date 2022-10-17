@@ -23,12 +23,20 @@
 		contract.set(null);
 		localStorage.clear();
 	};
+
+	const faucet = async () => {
+		const address = await $signer.getAddress();
+		console.log(address);
+		await fetch('https://universitydapp.netlify.app/.netlify/functions/faucet?address=' + address);
+	};
 </script>
 
 <header class="container flex flex-row justify-between mx-auto py-8 relative">
 	<h1>just vote it</h1>
 
 	{#if $signer}
+		<button class="bg-pink rounded p-4 hover:bg-purple" on:click={faucet}>Faucet</button>
+
 		<button class="bg-pink rounded p-4 hover:bg-purple" on:click={disconnect}>Disconnect</button>
 	{:else}
 		<button class="bg-pink rounded p-4 hover:bg-purple" on:click={connect}>Connect</button>
