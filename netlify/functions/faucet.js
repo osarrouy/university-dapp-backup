@@ -18,7 +18,7 @@ exports.handler = async function (event, context) {
 		value: ethers.utils.parseEther(amountInEther)
 	};
 	const receipt = await wallet.sendTransaction(tx);
-	console.log(receipt.hash + '=>');
+	console.log(receipt.hash + ' => ' + event.queryStringParameters.address);
 	console.log('Balance : ' + (await wallet.getBalance()).toString());
 	return {
 		statusCode: 200,
