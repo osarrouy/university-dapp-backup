@@ -22,6 +22,9 @@ exports.handler = async function (event, context) {
 	console.log('Balance : ' + (await wallet.getBalance()).toString());
 	return {
 		statusCode: 200,
-		body: JSON.stringify({ status: 'OK' })
+		body: JSON.stringify({ status: 'OK' }),
+		headers: {
+			'access-control-allow-origin': '*'
+		}
 	};
 };
